@@ -1,8 +1,8 @@
 import {useState} from "react";
-import CallWeatherApi from "@/pages/api/CallWeatherApi";
+import CallWeatherApi from "@/api/CallWeatherApi";
 
 
-function SearchForm() {
+function SearchForm({setWeatherDataState}) {
     const [cityNameState,setCityNameState] = useState("");
 
     const changeCityNameHandler = (e)=>{
