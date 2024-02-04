@@ -1,4 +1,13 @@
+import {json} from "stream/consumers";
 
 export default function CallWeatherApi(Props) {
-    console.log("city name:"+Props);
+    let request = new XMLHttpRequest();
+    request.onload = function (){
+        let response = JSON.parse(this.responseText);
+
+
+    }
+    request.open("GET", "https://api.openweathermap.org/data/2.5/weather?q=tehran&appid=3dce9b1c66837262a25b3f448d354a76&units=metric");
+
+    request.send();
 }
