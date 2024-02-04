@@ -13,6 +13,7 @@ function SearchForm() {
         e.preventDefault();
 
         console.log(cityNameState);
+        CallWeatherApi();
         setCityNameState("");
     }
     return (
