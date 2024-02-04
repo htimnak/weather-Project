@@ -12,8 +12,10 @@ function SearchForm({setWeatherDataState}) {
     }
     const submitHandler = (e) => {
         e.preventDefault();
-        console.log(CallWeatherApi(cityNameState));
 
+
+        console.log( CallWeatherApi(cityNameState));
+        //setWeatherDataState();
 
         setCityNameState("");
     }
