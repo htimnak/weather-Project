@@ -1,4 +1,5 @@
 import {useState} from "react";
+import CallWeatherApi from "@/pages/api/CallWeatherApi";
 
 
 function SearchForm() {
@@ -12,8 +13,8 @@ function SearchForm() {
     const submitHandler = (e) => {
         e.preventDefault();
 
-        console.log(cityNameState);
-        CallWeatherApi();
+
+        CallWeatherApi(cityNameState);
         setCityNameState("");
     }
     return (

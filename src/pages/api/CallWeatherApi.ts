@@ -1,4 +1,4 @@
-import React  'react';
-export default function CallWeatherApi() {
-    console.log(" i am working fine");
+
+export default function CallWeatherApi(Props) {
+    console.log("city name:"+Props);
 }
