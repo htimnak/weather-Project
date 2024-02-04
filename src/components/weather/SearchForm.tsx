@@ -12,9 +12,9 @@ function SearchForm({setWeatherDataState}) {
     }
     const submitHandler = (e) => {
         e.preventDefault();
+       let response = CallWeatherApi(cityNameState)
 
-
-        console.log( CallWeatherApi(cityNameState));
+        console.log({response});
         //setWeatherDataState();
 
         setCityNameState("");
