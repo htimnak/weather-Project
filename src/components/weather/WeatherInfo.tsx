@@ -14,7 +14,7 @@ function WeatherInfo({Weather}:Props) {
                 <p>Humidity: <span className={"text-orange-300"}>{Weather.Humidity}</span>,Wind:<span className={"text-orange-300"}>{Weather.wind}</span></p>
             </div>
             <div>
-                <div id="icon"><img id="wicon" src="" alt="Weather icon"/></div>
+
             </div>
         </div>
     );
