@@ -1,4 +1,6 @@
 import React from 'react';
+// @ts-ignore
+import ReactAnimatedWeather from 'react-animated-weather';
 interface Props{
     icon : string,
     size : number
@@ -8,7 +10,7 @@ function Weathericon({icon,size}:Props) {
    let codeMaping:{
        [key:string]:string
    } ={
-            "01d": "CLEAR_DAY”,
+            "01d": "CLEAR_DAY",
             "02d": "PARTLY_CLOUDY_DAY",
             "02n": "PARTLY_CLOUDY_NIGHT",
             "03d": "PARTLY_CLOUDY_DAY",
@@ -29,7 +31,12 @@ function Weathericon({icon,size}:Props) {
    }
 
     return (
-        <div></div>
+        <ReactAnimatedWeather
+            icon={codeMaping[icon]}
+            color={"#1e1e1e"}
+            size={size}
+            animate={true}
+        />
     );
 }
 

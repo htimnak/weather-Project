@@ -1,4 +1,6 @@
 import {WeatherData} from "@/types/WeatherData";
+import Weathericon from "@/components/Weathericon";
+import weather from "@/components/weather/Weather";
 
 interface Props{
     Weather :WeatherData
@@ -14,7 +16,7 @@ function WeatherInfo({Weather}:Props) {
                 <p>Humidity: <span className={"text-orange-300"}>{Weather.Humidity}</span>,Wind:<span className={"text-orange-300"}>{Weather.wind}</span></p>
             </div>
             <div>
-
+                <Weathericon icon={} size={36}/>
             </div>
         </div>
     );
