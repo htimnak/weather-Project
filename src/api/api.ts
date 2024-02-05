@@ -1,12 +1,20 @@
 import {json} from "stream/consumers";
 import {WeatherResponse} from "@/types/api/WeatherResponse";
+import {ForecastResponse} from "@/types/api/ForecastResponse";
+interface WeatherProps {
+    city: string
+}
+interface ForecastProps{
+    lat:number,
+    lon:number
+}
 const baseurl = "https://api.openweathermap.org/data/2.5/";
-const apikey = "3dce9b1c66837262a25b3f448d354a76"
-export async function CallWeatherApi({city}):Promise<WeatherResponse> {
+const apikey = "3dce9b1c66837262a25b3f448d354a76";
+export async function CallWeatherApi({city}:WeatherProps):Promise<WeatherResponse> {
     const response = await fetch(baseurl +`weather?q=${city}&appid=${apikey}&units=metric`);
     return response.json();
 }
-export async function CallForecastApi({lat,lon}):Promise<any> {
+export async function CallForecastApi({lat,lon}:ForecastProps):Promise<ForecastResponse> {
     const response = await fetch(baseurl +`onecall?lat=${lat}&lon=${lon}&appid=${apikey}&units=metric`);
     return response.json();
 }
