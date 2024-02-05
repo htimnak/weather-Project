@@ -12,11 +12,11 @@ const baseurl = "https://api.openweathermap.org/data/2.5/";
 const apikey = "3dce9b1c66837262a25b3f448d354a76";
 export async function CallWeatherApi({city}:WeatherProps):Promise<WeatherResponse> {
     const response = await fetch(baseurl +`weather?q=${city}&appid=${apikey}&units=metric`);
-    return response.json();
+    return await response.json();
 }
 export async function CallForecastApi({lat,lon}:ForecastProps):Promise<ForecastResponse> {
     const response = await fetch(baseurl +`onecall?lat=${lat}&lon=${lon}&appid=${apikey}&units=metric`);
-    return response.json();
+    return await response.json();
 }
 /*request.onload = function (){
        let response = JSON.parse(this.responseText);

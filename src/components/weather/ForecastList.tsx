@@ -5,6 +5,7 @@ interface Props {
 }
 function ForecastList({forecast}:Props) {
     console.log(forecast.daily);
+
     return (
         <div className={"w-full flex flex-row gap-6"}>
             {

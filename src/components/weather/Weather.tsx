@@ -20,11 +20,11 @@ function Weather({city}:Props) {
         daily :[]
 
     });
-    const [forecastState , setForecastState] =useState()
+    const [forecastState , setForecastState] =useState<ForecastResponse|null>(null)
     const getWeatherData = async (city :string)=>{
         let response = await CallWeatherApi({city});
 
-       // console.log(response);
+        console.log(response);
         const Weather:WeatherData ={
             city:response.name,
             wind:response.wind.speed,
@@ -35,8 +35,11 @@ function Weather({city}:Props) {
         }
         setWeatherDataState(Weather);
         const ForecastResponse = await CallForecastApi({lat:response.coord.lat,lon:response.coord.lon});
+        console.log(ForecastResponse.daily);
         setForecastState(ForecastResponse);
+
     }
+    console.log(forecastState);
     if(weatherDataState.city.length === 0){
         getWeatherData(city);
     }
