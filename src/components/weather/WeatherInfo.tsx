@@ -1,6 +1,5 @@
-function WeatherInfo() {
-    let iconcode ="10d";
-    var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+function WeatherInfo({setWeatherDataState}) {
+
 
     return (
         <div className={"flex flex-row justify-between"}>

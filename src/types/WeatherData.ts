@@ -1,7 +1,8 @@
-interface WeatherData {
+export interface WeatherData {
     city: string,
-    wind: string,
-    Humidity: string,
+    wind: number,
+    Humidity: number,
     description: string,
+    icon :string,
     daily : Array<any>
 }

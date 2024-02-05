@@ -14,16 +14,16 @@ function SearchForm({setWeatherDataState}) {
     }
     const submitHandler = (e) => {
         e.preventDefault();
-       let response = CallWeatherApi(cityNameState)
+       //let response = CallWeatherApi(cityNameState)
 
-        console.log({response});
-        const Weather:WeatherData ={
-            city:response.name,
+      //  console.log({response});
+      /* const Weather:WeatherData ={
+            city:response.,
             wind:"",
             Humidity:"",
             description:"",
             daily :[]
-        }
+        }*/
         setWeatherDataState();
         setCityNameState("");
     }
