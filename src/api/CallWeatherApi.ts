@@ -1,6 +1,7 @@
 import {json} from "stream/consumers";
+import {WeatherResponse} from "@/types/WeatherResponse";
 
-export default async function CallWeatherApi(Props) {
+export default  function CallWeatherApi({city}):Promise<WeatherResponse> {
     let request = new XMLHttpRequest();
 
     return new Promise((resolve, reject) => {
@@ -19,7 +20,7 @@ export default async function CallWeatherApi(Props) {
             }
         };
 
-        request.open("GET", `https://api.openweathermap.org/data/2.5/weather?q=`+Props+`&appid=3dce9b1c66837262a25b3f448d354a76&units=metric`);
+        request.open("GET", `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=3dce9b1c66837262a25b3f448d354a76&units=metric`);
 
         request.send();
     });

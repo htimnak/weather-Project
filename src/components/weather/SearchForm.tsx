@@ -16,7 +16,7 @@ function SearchForm({setWeatherDataState}) {
 
         console.log({response});
         //setWeatherDataState();
-
+        setWeatherDataState();
         setCityNameState("");
     }
     return (
