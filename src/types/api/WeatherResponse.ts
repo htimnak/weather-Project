@@ -14,7 +14,7 @@ export interface WeatherResponse {
     cod: number
 }
 
- interface Coord {
+export interface Coord {
     lon: number
     lat: number
 }

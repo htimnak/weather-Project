@@ -1,5 +1,5 @@
 import {WeatherData} from "@/types/WeatherData";
-import Weathericon from "@/components/Weathericon";
+import Weathericon from "@/components/weather/Weathericon";
 import weather from "@/components/weather/Weather";
 
 interface Props{

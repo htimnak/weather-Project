@@ -2,13 +2,15 @@ import SearchForm from "@/components/weather/SearchForm";
 import WeatherInfo from "@/components/weather/WeatherInfo";
 import ForecastList from "@/components/weather/ForecastList";
 import {useState} from "react";
-import Api from "@/api/api";
 import {WeatherData} from "@/types/WeatherData";
-import CallWeatherApi from "@/api/api";
+import {CallForecastApi, CallWeatherApi} from "@/api/api";
+import {ForecastResponse} from "@/types/api/ForecastResponse";
+
 interface Props{
     city: string
 }
 function Weather({city}:Props) {
+    const [ForecastState ,setForecastState] = useState<ForecastResponse|null>(null);
     const [weatherDataState , setWeatherDataState]=useState<WeatherData>({
         city:"",
         wind:0,
@@ -31,6 +33,8 @@ function Weather({city}:Props) {
             daily :[]
         }
         setWeatherDataState(Weather);
+        const Forecastresponse = await CallForecastApi({lat:response.coord.lat,lon:response.coord.lon});
+        setForecastState(Forecastresponse);
     }
     if(weatherDataState.city.length === 0){
         getWeatherData(city);
@@ -40,7 +44,7 @@ function Weather({city}:Props) {
             <SearchForm city={city} getWeatherData={getWeatherData}/>
             <hr/>
             <WeatherInfo Weather={weatherDataState} />
-            <ForecastList/>
+            <ForecastList Forecast={ForecastState}/>
         </div>
     );
 }
