@@ -1,7 +1,7 @@
 import {ChangeEvent, FormEvent, useState} from "react";
 import Api from "@/api/api";
 import Weather from "@/components/weather/Weather";
-import {WeatherResponse} from "@/types/WeatherResponse";
+import {WeatherResponse} from "@/types/api/WeatherResponse";
 interface Props {
     city: string,
     getWeatherData : Function

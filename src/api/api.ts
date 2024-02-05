@@ -1,5 +1,5 @@
 import {json} from "stream/consumers";
-import {WeatherResponse} from "@/types/WeatherResponse";
+import {WeatherResponse} from "@/types/api/WeatherResponse";
 const baseurl = "https://api.openweathermap.org/data/2.5/";
 const apikey = "3dce9b1c66837262a25b3f448d354a76"
 export async function CallWeatherApi({city}):Promise<WeatherResponse> {
