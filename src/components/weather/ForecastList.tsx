@@ -1,17 +1,19 @@
 import ForecastItem from "@/components/weather/ForecastItem";
 import {Daily, ForecastResponse} from "@/types/api/ForecastResponse";
 interface Props {
-    Forecast: ForecastResponse,
+    forecast: ForecastResponse,
 }
-function ForecastList({Forecast}:Props) {
+function ForecastList({forecast}:Props) {
+    console.log(forecast.daily);
     return (
         <div className={"w-full flex flex-row gap-6"}>
             {
-                Forecast.daily.map((item:Daily)=>{
 
-                    return( <ForecastItem item={item}/>);
+                 forecast.daily.map((item:Daily)=>{
 
-                })
+                     return( <ForecastItem item={item}/>);
+
+                 })
             }
         </div>
     );

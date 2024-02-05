@@ -10,7 +10,7 @@ interface Props{
     city: string
 }
 function Weather({city}:Props) {
-    const [ForecastState ,setForecastState] = useState<ForecastResponse|null>(null);
+
     const [weatherDataState , setWeatherDataState]=useState<WeatherData>({
         city:"",
         wind:0,
@@ -20,10 +20,11 @@ function Weather({city}:Props) {
         daily :[]
 
     });
+    const [forecastState , setForecastState] =useState()
     const getWeatherData = async (city :string)=>{
         let response = await CallWeatherApi({city});
 
-        console.log(response);
+       // console.log(response);
         const Weather:WeatherData ={
             city:response.name,
             wind:response.wind.speed,
@@ -33,8 +34,8 @@ function Weather({city}:Props) {
             daily :[]
         }
         setWeatherDataState(Weather);
-        const Forecastresponse = await CallForecastApi({lat:response.coord.lat,lon:response.coord.lon});
-        setForecastState(Forecastresponse);
+        const ForecastResponse = await CallForecastApi({lat:response.coord.lat,lon:response.coord.lon});
+        setForecastState(ForecastResponse);
     }
     if(weatherDataState.city.length === 0){
         getWeatherData(city);
@@ -44,7 +45,7 @@ function Weather({city}:Props) {
             <SearchForm city={city} getWeatherData={getWeatherData}/>
             <hr/>
             <WeatherInfo Weather={weatherDataState} />
-            <ForecastList Forecast={ForecastState}/>
+            <ForecastList forecast={forecastState}/>
         </div>
     );
 }
