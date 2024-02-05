@@ -1,35 +1,27 @@
-import {useState} from "react";
+import {ChangeEvent, FormEvent, useState} from "react";
 import CallWeatherApi from "@/api/CallWeatherApi";
 import Weather from "@/components/weather/Weather";
 import {WeatherResponse} from "@/types/WeatherResponse";
+interface Props {
+    city: string,
+    getWeatherData : Function
+}
 
+function SearchForm({city,getWeatherData}:Props) {
+    const [cityNameState,setCityNameState] = useState<string>(city);
 
-function SearchForm({setWeatherDataState}) {
-    const [cityNameState,setCityNameState] = useState("");
-
-    const changeCityNameHandler = (e)=>{
+    const changeCityNameHandler = (e: ChangeEvent<HTMLInputElement>)=>{
         setCityNameState(e.target.value);
 
 
     }
-    const submitHandler = (e) => {
+    const submitHandler = (e :FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-       //let response = CallWeatherApi(cityNameState)
-
-      //  console.log({response});
-      /* const Weather:WeatherData ={
-            city:response.,
-            wind:"",
-            Humidity:"",
-            description:"",
-            daily :[]
-        }*/
-        setWeatherDataState();
-        setCityNameState("");
+        getWeatherData(cityNameState);
     }
     return (
-       <div className={" w-full flex justify-center mb-8 mt-28"} onSubmit={submitHandler }>
-           <form>
+       <div className={" w-full flex justify-center mb-8 mt-28"}>
+           <form  onSubmit={submitHandler}>
                <input className={" border px-8 py-4 rounded mr-3 "} type={"text"} value={cityNameState}  onChange={changeCityNameHandler}/>
                <input className={"bg-orange-300 px-8 py-4 rounded text-white "} type={"submit"} value={"Search"}/>
            </form>
