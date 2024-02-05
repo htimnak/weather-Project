@@ -8,7 +8,7 @@ interface Props{
     city: string
 }
 function Weather({city}:Props) {
-    const [weatherIDataState , setWeatherDataState]=useState<WeatherData>({
+    const [weatherDataState , setWeatherDataState]=useState<WeatherData>({
         city:"",
         wind:0,
         Humidity:0,
@@ -31,14 +31,14 @@ function Weather({city}:Props) {
         }
         setWeatherDataState(Weather);
     }
-    if(weatherIDataState.city.length === 0){
+    if(weatherDataState.city.length === 0){
         getWeatherData(city);
     }
     return (
-        <div className={"w-1/2 h-[500px] bg-white rounded-xl px-8   "}>
+        <div className={" h-[500px] bg-white rounded-xl px-8   "}>
             <SearchForm city={city} getWeatherData={getWeatherData}/>
             <hr/>
-            <WeatherInfo  />
+            <WeatherInfo Weather={weatherDataState} />
             <ForecastList/>
         </div>
     );
