@@ -1,6 +1,7 @@
 import {json} from "stream/consumers";
 import {WeatherResponse} from "@/types/WeatherResponse";
-
+const baseurl = "https://api.openweathermap.org/data/2.5/";
+const apikey = "3dce9b1c66837262a25b3f448d354a76"
 export default function CallWeatherApi(city):Promise<WeatherResponse> {
     let request = new XMLHttpRequest();
 
@@ -20,7 +21,7 @@ export default function CallWeatherApi(city):Promise<WeatherResponse> {
             }
         };
 
-        request.open("GET", `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=3dce9b1c66837262a25b3f448d354a76&units=metric`);
+        request.open("GET", baseurl +`weather?q=${city}&appid=${apikey}&units=metric`);
 
         request.send();
     });
