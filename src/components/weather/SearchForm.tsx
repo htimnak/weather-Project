@@ -1,5 +1,5 @@
 import {ChangeEvent, FormEvent, useState} from "react";
-import CallWeatherApi from "@/api/CallWeatherApi";
+import Api from "@/api/api";
 import Weather from "@/components/weather/Weather";
 import {WeatherResponse} from "@/types/WeatherResponse";
 interface Props {
