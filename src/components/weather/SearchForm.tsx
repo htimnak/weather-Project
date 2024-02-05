@@ -1,5 +1,7 @@
 import {useState} from "react";
 import CallWeatherApi from "@/api/CallWeatherApi";
+import Weather from "@/components/weather/Weather";
+import {WeatherResponse} from "@/types/WeatherResponse";
 
 
 function SearchForm({setWeatherDataState}) {
@@ -15,7 +17,13 @@ function SearchForm({setWeatherDataState}) {
        let response = CallWeatherApi(cityNameState)
 
         console.log({response});
-        //setWeatherDataState();
+        const Weather:WeatherData ={
+            city:response.name,
+            wind:"",
+            Humidity:"",
+            description:"",
+            daily :[]
+        }
         setWeatherDataState();
         setCityNameState("");
     }

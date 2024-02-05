@@ -1,7 +1,7 @@
 import {json} from "stream/consumers";
 import {WeatherResponse} from "@/types/WeatherResponse";
 
-export default  function CallWeatherApi({city}):Promise<WeatherResponse> {
+export default function CallWeatherApi(city):Promise<WeatherResponse> {
     let request = new XMLHttpRequest();
 
     return new Promise((resolve, reject) => {
