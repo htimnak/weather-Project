@@ -4,13 +4,13 @@ interface Props {
     forecast: ForecastResponse,
 }
 function ForecastList({forecast}:Props) {
-    console.log(forecast.daily);
+   // console.log(forecast.daily);
 
     return (
         <div className={"w-full flex flex-row gap-6"}>
             {
 
-                 forecast.daily.map((item:Daily)=>{
+                forecast.daily.map((item:Daily)=>{
 
                      return( <ForecastItem item={item}/>);
 
