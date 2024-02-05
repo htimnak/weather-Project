@@ -1,4 +1,7 @@
 function WeatherInfo() {
+    let iconcode ="10d";
+    var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+
     return (
         <div className={"flex flex-row justify-between"}>
             <div>
@@ -7,7 +10,7 @@ function WeatherInfo() {
                 <p>Humidity: <span className={"text-orange-300"}>8</span>,Wind:<span className={"text-orange-300"}>5.4km/h</span></p>
             </div>
             <div>
-                <p>this is icon</p>
+                <div id="icon"><img id="wicon" src="" alt="Weather icon"/></div>
             </div>
         </div>
     );
