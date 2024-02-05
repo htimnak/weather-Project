@@ -36,9 +36,9 @@ function Weather({city}:Props) {
     }
     return (
         <div className={"w-1/2 h-[500px] bg-white rounded-xl px-8   "}>
-            <SearchForm weatherIn={setWeatherDataState}/>
+            <SearchForm city={city} getWeatherData={getWeatherData}/>
             <hr/>
-            <WeatherInfo city={city} getWeatherData={getWeatherData} />
+            <WeatherInfo  />
             <ForecastList/>
         </div>
     );
