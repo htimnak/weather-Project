@@ -10,9 +10,9 @@ function ForecastList({forecast}:Props) {
         <div className={"w-full flex flex-row gap-6"}>
             {
 
-                forecast.daily.map((item:Daily)=>{
+                forecast.daily.map((item:Daily,index)=>{
 
-                     return( <ForecastItem item={item}/>);
+                     return( <ForecastItem key={index} item={item}/>);
 
                  })
             }
