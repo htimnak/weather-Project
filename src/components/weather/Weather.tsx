@@ -48,7 +48,7 @@ function Weather({city}:Props) {
     }*/
     useEffect(()=>{
         getWeatherData();
-        },[]
+        },[cityState]
 
     );
     return (
