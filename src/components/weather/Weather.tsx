@@ -1,7 +1,7 @@
 import SearchForm from "@/components/weather/SearchForm";
 import WeatherInfo from "@/components/weather/WeatherInfo";
 import ForecastList from "@/components/weather/ForecastList";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {WeatherData} from "@/types/WeatherData";
 
 import {ForecastResponse} from "@/types/api/ForecastResponse";
@@ -42,9 +42,14 @@ function Weather({city}:Props) {
 
     }
     //console.log(forecastState);
-    if(weatherDataState.city.length === 0){
+    /*if(weatherDataState.city.length === 0){
         getWeatherData(city);
-    }
+    }*/
+    useEffect(()=>{
+        getWeatherData(city);
+        },[]
+
+    );
     return (
         <div className={" h-[500px] bg-white rounded-xl px-8   "}>
             <SearchForm city={city} getWeatherData={getWeatherData}/>
