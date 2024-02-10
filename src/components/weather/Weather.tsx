@@ -11,6 +11,7 @@ interface Props{
     city: string
 }
 function Weather({city}:Props) {
+    const[isLoading,setIsLoading]=useState(true);
     const [cityState ,setCityState] = useState(city);
 
     const [weatherDataState , setWeatherDataState]=useState<WeatherData>({
@@ -24,8 +25,9 @@ function Weather({city}:Props) {
     });
     const [forecastState , setForecastState] =useState<ForecastResponse|null>(null)
     const getWeatherData = async ()=>{
+        setIsLoading(true);
         let response = await CallWeatherApi({city:cityState});
-
+        setIsLoading(false);
       //  console.log(response);
         const Weather:WeatherData ={
             city:response.name,
@@ -55,10 +57,16 @@ function Weather({city}:Props) {
         <div className={" h-[500px] bg-white rounded-xl px-8   "}>
             <SearchForm city={cityState} setCityState={setCityState} /*getWeatherData={getWeatherData}*//>
             <hr/>
-            <WeatherInfo Weather={weatherDataState} />
             {
-                forecastState != null ? <ForecastList forecast={forecastState}/> : ''
+                isLoading ? <p>page is loading</p>:
+                    <>
+                        <WeatherInfo Weather={weatherDataState} />
+                        {
+                            forecastState != null ? <ForecastList forecast={forecastState}/> : ''
+                        }
+                    </>
             }
+
 
         </div>
     );
