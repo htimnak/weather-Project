@@ -13,10 +13,15 @@ interface ForecastProps{
     lat:number,
     lon:number
 }
-export async function CallWeatherApi({city}:WeatherProps):Promise<WeatherResponse> {
+export async function CallWeatherApi({city}:WeatherProps):Promise<WeatherResponse | false>  {
     await sleep(2000);
     const response = await fetch(baseurl +`weather?q=${city}&appid=${apikey}&units=metric`);
-    return await response.json();
+    if(response.ok){
+        return await response.json();
+    }else{
+        return false;
+    }
+
 }
 export async function CallForecastApi({lat,lon}:ForecastProps):Promise<ForecastResponse> {
     await sleep(2000);
