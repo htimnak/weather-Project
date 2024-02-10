@@ -54,7 +54,7 @@ function Weather({city}:Props) {
 
     );
     return (
-        <div className={" h-[500px] bg-white rounded-xl px-8   "}>
+        <div className={"bg-white rounded-xl px-8  w-[1000px] h-[500px]  "}>
             <SearchForm city={cityState} setCityState={setCityState} /*getWeatherData={getWeatherData}*//>
             <hr/>
             {
