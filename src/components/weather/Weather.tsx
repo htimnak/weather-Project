@@ -58,7 +58,7 @@ function Weather({city}:Props) {
             <SearchForm city={cityState} setCityState={setCityState} /*getWeatherData={getWeatherData}*//>
             <hr/>
             {
-                isLoading ? <p>page is loading</p>:
+                isLoading ? <p>page is loading please wait</p>:
                     <>
                         <WeatherInfo Weather={weatherDataState} />
                         {
