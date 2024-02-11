@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {CallWeatherApi} from "@/api/api";
 import {WeatherResponse} from "@/types/api/WeatherResponse";
 interface Props {
@@ -18,7 +18,7 @@ export function  useWeatherApi({city}:Props){
         setIsLoading(true);
         setHasError(false);
         let response = await CallWeatherApi({city:city});
-
+        console.log(response);
         setIsLoading(false);
         if(response === false){
             setHasError(true);
@@ -26,7 +26,10 @@ export function  useWeatherApi({city}:Props){
         }
 
     }
-    apiCall();
+    useEffect(()=>{
+        apiCall();
+    },[]);
+
 
     return {isLoading,hasError,response}
 
