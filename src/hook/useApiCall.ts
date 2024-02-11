@@ -3,13 +3,14 @@ import {WeatherResponse} from "@/types/api/WeatherResponse";
 import ApiStatus from "@/types/api/ApiStatus";
 import {CallWeatherApi} from "@/api/api";
 
-interface Props <T>{
-    func:(arg:T)=>{};
-    params:T
+interface Props <S,T>{
+    func:(arg:T)=>Promise<S| false>;
+    params:T;
+    refresh ? :Array<any>
 }
-export  default function useApiCall<s,T>({func,params}:Props<T>){
+export  default function useApiCall<S,T>({func,params,refresh}:Props<S,T>){
 
-    const [response,setResponse]=useState<s|false>(false);
+    const [response,setResponse]=useState<S|false>(false);
     const [status,setStatus]=useState<ApiStatus>("pending")
 
     const apiCall =async ()=>{
@@ -25,7 +26,7 @@ export  default function useApiCall<s,T>({func,params}:Props<T>){
     }
     useEffect(()=>{
         apiCall();
-    },[city]);
+    },refresh);
 
 
     return {status,response}
