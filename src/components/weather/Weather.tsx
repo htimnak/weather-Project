@@ -18,7 +18,7 @@ function Weather({city}:Props) {
     const [cityState ,setCityState] = useState(city);
     const[coord,setCoord] = useState({lat:0,lon:0});
 
-    useApiCall<WeatherResponse|WeatherProps>({func:CallWeatherApi,params:{city:cityState}});
+    useApiCall<WeatherResponse|WeatherProps>({func:CallWeatherApi,params:{city:cityState},refresh:[cityState]});
     const {status,response } =useWeatherApi({city:cityState});
     const {status:ForecastStatus,response:ForecastResponse}= useForecastApi(coord);
 

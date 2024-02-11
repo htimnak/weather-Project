@@ -8,7 +8,7 @@ interface Props <S,T>{
     params:T;
     refresh ? :Array<any>
 }
-export  default function useApiCall<S,T>({func,params,refresh}:Props<S,T>){
+export  default function useApiCall<S,T>({func,params,refresh=[]}:Props<S,T>){
 
     const [response,setResponse]=useState<S|false>(false);
     const [status,setStatus]=useState<ApiStatus>("pending")
