@@ -19,6 +19,11 @@ function Weather({city}:Props) {
     const [forecastState , setForecastState] =useState<ForecastResponse|null>(null);
     const {status,response } =useWeatherApi({city:cityState});
     const {status:ForecastStatus,response:ForecastResponse}= useForecastApi(coord);
+    useEffect(()=>{
+        if(response){
+            setCoord(response.coord);
+        }
+    },[response])
     let weather :null| WeatherData= null;
     if(response){
         weather= {
@@ -29,7 +34,7 @@ function Weather({city}:Props) {
             icon:response.weather[0].icon,
             daily :[]
         }
-        setCoord(response.coord);
+
 
 
 
