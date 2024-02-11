@@ -1,18 +1,20 @@
 import React from 'react';
 import ApiStatus from "@/types/api/ApiStatus";
 interface Props{
-    status:ApiStatus
+    status:ApiStatus;
+    children:React.ReactNode
 }
 
-export default  function ApiLoader({status}:Props) {
+export default  function ApiLoader({status,children}:Props) {
     return (
-        <div>
-            status === "isLoading" ? <p>page is loading please wait</p>:
-            status ===   "hasError" ? <p>there is an error white api</p>:
-            <>
+        <>
+            {
+                status === "isLoading" ? <p>page is loading please wait</p>:
+                status ===   "hasError" ? <p>there is an error white api</p>:
+                children
+            }
 
-            </>
-        </div>
+        </>
     );
 }
 
