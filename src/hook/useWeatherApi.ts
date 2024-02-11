@@ -17,9 +17,9 @@ export function  useWeatherApi({city}:Props){
     const [status,setStatus]=useState<"pending"|"isLoading"|"hasError"|"isSuccess">("pending")
 
     const apiCall =async ()=>{
-
+        setStatus("isLoading");
        const result = await CallWeatherApi({city:city});
-       setStatus("isLoading");
+
 
         //console.log(response);
 

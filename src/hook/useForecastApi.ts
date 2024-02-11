@@ -19,8 +19,9 @@ export function  useForecastApi({lat,lon}:ForecastProps){
     const [status,setStatus]=useState<"pending"|"isLoading"|"hasError"|"isSuccess">("pending")
 
     const apiCall =async ()=>{
-        const result = await CallForecastApi({lat,lon});
         setStatus("isLoading");
+        const result = await CallForecastApi({lat,lon});
+
 
         //console.log(response);
 
