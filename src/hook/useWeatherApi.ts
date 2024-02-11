@@ -12,7 +12,7 @@ interface WeatherResult {
 export function  useWeatherApi({city}:Props){
     const[isLoading,setIsLoading]=useState(true);
     const [hasError,setHasError]=useState(false);
-    const [response,setResponse]=useState<WeatherResponse | false>(false);
+    const [response,setResponse]=useState<WeatherResponse|false>(false);
      //let response:WeatherResponse | false = false;
 
     const apiCall =async ()=>{
@@ -22,7 +22,7 @@ export function  useWeatherApi({city}:Props){
         setResponse(result);
         //console.log(response);
         setIsLoading(false);
-        if(response === false){
+        if(result === false){
             setHasError(true);
             return;
         }
