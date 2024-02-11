@@ -24,7 +24,8 @@ function Weather({city}:Props) {
 
     });
     const [forecastState , setForecastState] =useState<ForecastResponse|null>(null);
-    const {isLoading,hasError,response } =useWeatherApi({city:cityState})
+    const {status,response } =useWeatherApi({city:cityState});
+
     const getWeatherData = async ()=>{
     if(response){
         //  console.log(response);
@@ -38,9 +39,9 @@ function Weather({city}:Props) {
             daily :[]
         }
         setWeatherDataState(Weather);
-        const ForecastResponse = await CallForecastApi({lat:response.coord.lat,lon:response.coord.lon});
-        console.log(ForecastResponse.daily);
-        setForecastState(ForecastResponse);
+
+
+        //setForecastState(ForecastResponse);
 
         }
 
@@ -61,8 +62,8 @@ function Weather({city}:Props) {
             <SearchForm city={cityState} setCityState={setCityState} /*getWeatherData={getWeatherData}*//>
             <hr/>
             {
-                isLoading ? <p>page is loading please wait</p>:
-                    hasError ? <p>there is an error white api</p>:
+                status === "isLoading" ? <p>page is loading please wait</p>:
+                    status ===   "hasError" ? <p>there is an error white api</p>:
                     <>
                         <WeatherInfo Weather={weatherDataState} />
                         {
