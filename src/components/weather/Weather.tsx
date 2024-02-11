@@ -73,7 +73,9 @@ function Weather({city}:Props) {
                     <>
                         <WeatherInfo Weather={weatherDataState} />
                         {
-                            forecastState != null ? <ForecastList forecast={forecastState}/> : ''
+                                ForecastStatus === "isLoading" ? <p>page is loading please wait</p>:
+                                ForecastStatus ===   "hasError" ? <p>there is an error white api</p>:
+                                forecastState != null ? <ForecastList forecast={forecastState}/> : ''
                         }
                     </>
             }

@@ -35,7 +35,10 @@ export function  useForecastApi({lat,lon}:ForecastProps){
 
     }
     useEffect(()=>{
-        apiCall();
+        if(lat != 0 && lon != 0){
+            apiCall();
+        }
+
     },[lat,lon]);
 
 
