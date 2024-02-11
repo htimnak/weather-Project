@@ -5,8 +5,7 @@ interface Props {
     city :string
 }
 interface WeatherResult {
-    isLoading:boolean;
-    hasError:boolean,
+    status:"pending"|"isLoading"|"hasError"|"isSuccess";
     response : WeatherResponse | false;
 }
 export function  useWeatherApi({city}:Props){
@@ -39,6 +38,6 @@ export function  useWeatherApi({city}:Props){
     },[city]);
 
 
-    return {isLoading,hasError,response}
+    return {status,response}
 
 }
