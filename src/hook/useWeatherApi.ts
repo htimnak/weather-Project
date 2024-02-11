@@ -30,7 +30,7 @@ export function  useWeatherApi({city}:Props){
     }
     useEffect(()=>{
         apiCall();
-    },[]);
+    },[city]);
 
 
     return {isLoading,hasError,response}
