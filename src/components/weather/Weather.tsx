@@ -19,15 +19,14 @@ function Weather({city}:Props) {
     const [cityState ,setCityState] = useState(city);
     const[coord,setCoord] = useState({lat:0,lon:0});
 
-    const {status,response }=useApiCall<WeatherResponse|WeatherProps>({func:CallWeatherApi,params:{city:cityState},refresh:[cityState]});
+    const {status,response }=useApiCall<WeatherResponse,WeatherProps>({func:CallWeatherApi,params:{city:cityState},refresh:[cityState]});
     const {status:ForecastStatus,response:ForecastResponse}
-        =useApiCall<ForecastResponse|ForecastProps>({
+        =useApiCall<ForecastResponse,ForecastProps>({
                 func:CallForecastApi,
                 params:coord,
                 refresh:[coord],
                 enabelad : (coord.lat != 0 && coord.lon != 0)
             });
-
 
 
 
