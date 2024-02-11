@@ -26,7 +26,7 @@ function Weather({city}:Props) {
     });
     const [forecastState , setForecastState] =useState<ForecastResponse|null>(null);
     const {status,response } =useWeatherApi({city:cityState});
-    const {status:ForecastStatus,response:ForecastResponse}= useForecastApi({lat:coord,lon:coord});
+    const {status:ForecastStatus,response:ForecastResponse}= useForecastApi(coord);
 
     const getWeatherData = async ()=>{
     if(response){
@@ -41,15 +41,19 @@ function Weather({city}:Props) {
             daily :[]
         }
         setWeatherDataState(Weather);
-
-
-        //setForecastState(ForecastResponse);
+        setCoord(response.coord);
 
         }
 
 
 
     }
+    useEffect(()=>{
+        if(ForecastResponse){
+            setForecastState(ForecastResponse);
+        }
+    },[ForecastResponse])
+
     //console.log(forecastState);
     /*if(weatherDataState.city.length === 0){
         getWeatherData(city);
