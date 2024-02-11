@@ -10,22 +10,28 @@ interface WeatherResult {
     response : WeatherResponse | false;
 }
 export function  useWeatherApi({city}:Props){
-    const[isLoading,setIsLoading]=useState(true);
-    const [hasError,setHasError]=useState(false);
+    //this is status of api
+    /*const[isLoading,setIsLoading]=useState(true);
+    const [hasError,setHasError]=useState(false);*/
     const [response,setResponse]=useState<WeatherResponse|false>(false);
      //let response:WeatherResponse | false = false;
+    const [status,setStatus]=useState<"pending"|"isLoading"|"hasError"|"isSuccess">("pending")
 
     const apiCall =async ()=>{
-        setIsLoading(true);
-        setHasError(false);
+
        const result = await CallWeatherApi({city:city});
-        setResponse(result);
+       setStatus("isLoading");
+
         //console.log(response);
-        setIsLoading(false);
+
         if(result === false){
-            setHasError(true);
+            setStatus("hasError");
             return;
         }
+
+        setStatus("isSuccess");
+        setResponse(result);
+
 
     }
     useEffect(()=>{
