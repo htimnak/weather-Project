@@ -6,12 +6,12 @@ import {WeatherData} from "@/types/WeatherData";
 
 import {ForecastResponse} from "@/types/api/ForecastResponse";
 import {CallForecastApi, CallWeatherApi} from "@/api/api";
+import {useWeatherApi} from "@/hook/useWeatherApi";
 
 interface Props{
     city: string
 }
 function Weather({city}:Props) {
-    const[isLoading,setIsLoading]=useState(true);
     const [cityState ,setCityState] = useState(city);
 
     const [weatherDataState , setWeatherDataState]=useState<WeatherData>({
@@ -23,13 +23,13 @@ function Weather({city}:Props) {
         daily :[]
 
     });
-    const [forecastState , setForecastState] =useState<ForecastResponse|null>(null)
+    const [forecastState , setForecastState] =useState<ForecastResponse|null>(null);
+    const {isLoading,hasError,response } =useWeatherApi({city:cityState})
     const getWeatherData = async ()=>{
-        setIsLoading(true);
-        let response = await CallWeatherApi({city:cityState});
-        setIsLoading(false);
-      //  console.log(response);
+    if(response){
+        //  console.log(response);
         const Weather:WeatherData ={
+
             city:response.name,
             wind:response.wind.speed,
             Humidity:response.main.humidity,
@@ -41,6 +41,9 @@ function Weather({city}:Props) {
         const ForecastResponse = await CallForecastApi({lat:response.coord.lat,lon:response.coord.lon});
         console.log(ForecastResponse.daily);
         setForecastState(ForecastResponse);
+
+        }
+
 
 
     }
@@ -59,6 +62,7 @@ function Weather({city}:Props) {
             <hr/>
             {
                 isLoading ? <p>page is loading please wait</p>:
+                    hasError ? <p>there is an error white api</p>:
                     <>
                         <WeatherInfo Weather={weatherDataState} />
                         {
