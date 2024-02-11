@@ -7,13 +7,14 @@ import {WeatherData} from "@/types/WeatherData";
 import {ForecastResponse} from "@/types/api/ForecastResponse";
 import {CallForecastApi, CallWeatherApi} from "@/api/api";
 import {useWeatherApi} from "@/hook/useWeatherApi";
+import {useForecastApi} from "@/hook/useForecastApi";
 
 interface Props{
     city: string
 }
 function Weather({city}:Props) {
     const [cityState ,setCityState] = useState(city);
-
+        const[coord,setCoord] = useState({lat:0,lon:0})
     const [weatherDataState , setWeatherDataState]=useState<WeatherData>({
         city:"",
         wind:0,
@@ -25,6 +26,7 @@ function Weather({city}:Props) {
     });
     const [forecastState , setForecastState] =useState<ForecastResponse|null>(null);
     const {status,response } =useWeatherApi({city:cityState});
+    const {status:ForecastStatus,response:ForecastResponse}= useForecastApi({lat:coord,lon:coord});
 
     const getWeatherData = async ()=>{
     if(response){

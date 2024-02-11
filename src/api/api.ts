@@ -23,10 +23,15 @@ export async function CallWeatherApi({city}:WeatherProps):Promise<WeatherRespons
     }
 
 }
-export async function CallForecastApi({lat,lon}:ForecastProps):Promise<ForecastResponse> {
+export async function CallForecastApi({lat,lon}:ForecastProps):Promise<ForecastResponse|false> {
     await sleep(2000);
     const response = await fetch(baseurl +`onecall?lat=${lat}&lon=${lon}&appid=${apikey}&units=metric`);
-    return await response.json();
+    if(response){
+        return await response.json();
+    }else{
+        return false;
+    }
+
 }
 const sleep =(ms:number)=> new Promise ((r)=>setTimeout(r,ms));
 /*request.onload = function (){
