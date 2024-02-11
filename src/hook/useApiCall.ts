@@ -6,9 +6,10 @@ import {CallWeatherApi} from "@/api/api";
 interface Props <S,T>{
     func:(arg:T)=>Promise<S| false>;
     params:T;
-    refresh ? :Array<any>
+    refresh ? :Array<any>;
+    enabelad?:boolean
 }
-export  default function useApiCall<S,T>({func,params,refresh=[]}:Props<S,T>){
+export  default function useApiCall<S,T>({func,params,refresh=[],enabelad = true}:Props<S,T>){
 
     const [response,setResponse]=useState<S|false>(false);
     const [status,setStatus]=useState<ApiStatus>("pending")
@@ -25,6 +26,7 @@ export  default function useApiCall<S,T>({func,params,refresh=[]}:Props<S,T>){
         setResponse(result);
     }
     useEffect(()=>{
+        if(enabelad)
         apiCall();
     },refresh);
 

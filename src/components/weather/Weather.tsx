@@ -7,9 +7,10 @@ import {useWeatherApi} from "@/hook/useWeatherApi";
 import {useForecastApi} from "@/hook/useForecastApi";
 import ApiLoader from "@/components/share/ApiLoader/ApiLoader";
 import useApiCall from "@/hook/useApiCall";
-import {CallWeatherApi} from "@/api/api";
+import {CallForecastApi, CallWeatherApi} from "@/api/api";
 import {WeatherResponse} from "@/types/api/WeatherResponse";
-import {WeatherProps} from "@/types/api/FetcherProps";
+import {ForecastProps, WeatherProps} from "@/types/api/FetcherProps";
+import {ForecastResponse} from "@/types/api/ForecastResponse";
 
 interface Props{
     city: string
@@ -18,9 +19,20 @@ function Weather({city}:Props) {
     const [cityState ,setCityState] = useState(city);
     const[coord,setCoord] = useState({lat:0,lon:0});
 
-    useApiCall<WeatherResponse|WeatherProps>({func:CallWeatherApi,params:{city:cityState},refresh:[cityState]});
-    const {status,response } =useWeatherApi({city:cityState});
-    const {status:ForecastStatus,response:ForecastResponse}= useForecastApi(coord);
+    const {status,response }=useApiCall<WeatherResponse|WeatherProps>({func:CallWeatherApi,params:{city:cityState},refresh:[cityState]});
+    const {status:ForecastStatus,response:ForecastResponse}
+        =useApiCall<ForecastResponse|ForecastProps>({
+                func:CallForecastApi,
+                params:coord,
+                refresh:[coord],
+                enabelad : (coord.lat != 0 && coord.lon != 0)
+            });
+
+
+
+
+    //const {status,response } =useWeatherApi({city:cityState});
+    //const {status:ForecastStatus,response:ForecastResponse}= useForecastApi(coord);
 
     useEffect(()=>{
         if(response){
