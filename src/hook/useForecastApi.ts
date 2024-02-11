@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import {CallForecastApi, CallWeatherApi} from "@/api/api";
 import {ForecastResponse} from "@/types/api/ForecastResponse";
 import {number} from "prop-types";
+import ApiStatus from "@/types/api/ApiStatus";
 interface ForecastProps{
     lat:number,
     lon:number
@@ -16,7 +17,7 @@ export function  useForecastApi({lat,lon}:ForecastProps){
     const [hasError,setHasError]=useState(false);*/
     const [response,setResponse]=useState<ForecastResponse|false>(false);
     //let response:WeatherResponse | false = false;
-    const [status,setStatus]=useState<"pending"|"isLoading"|"hasError"|"isSuccess">("pending")
+    const [status,setStatus]=useState<ApiStatus>("pending")
 
     const apiCall =async ()=>{
         setStatus("isLoading");
